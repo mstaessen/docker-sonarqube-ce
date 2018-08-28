@@ -6,15 +6,15 @@ services:
   - docker
 
 env:
-  - VERSION=6.7.5
-  - VERSION=6.7.5 VARIANT=alpine
-  - VERSION=7.3
-  - VERSION=7.3 VARIANT=alpine
+  - BRANCH=lts VERSION=6.7.5
+  - BRANCH=lts VERSION=6.7.5 VARIANT=alpine
+  - BRANCH=latest VERSION=7.3
+  - BRANCH=latest VERSION=7.3 VARIANT=alpine
 
 script:
-  - v="${VERSION}${VARIANT:+-$VARIANT}"
-  - cd "$v"
-  - docker build -t "sonarqube-$v" .
+  - tag="${BRANCH}${VARIANT:+-$VARIANT}"
+  - cd "$tag"
+  - docker build -t "sonarqube-ce:$tag" .
   - docker images
 
 notifications:
