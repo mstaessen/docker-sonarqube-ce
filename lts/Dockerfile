@@ -21,6 +21,7 @@ USER sonarqube
 # uid                  sonarsource_deployer (Sonarsource Deployer) <infra@sonarsource.com>
 # sub   2048R/06855C1D 2015-05-25
 RUN set -x \
+    && export GNUPGHOME="$(mktemp -d)" \
     && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys F1182E81C792928921DBCAB4CFCA4A29D26468DE \
     && cd /opt \
     && curl -o sonarqube.zip -fSL https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-$SONAR_VERSION.zip \
@@ -30,7 +31,7 @@ RUN set -x \
     && mv sonarqube-$SONAR_VERSION sonarqube \
     && chown -R sonarqube:sonarqube sonarqube \
     && rm sonarqube.zip* \
-    && rm -rf $SONARQUBE_HOME/bin/*
+    && rm -rf $GNUPGHOME $SONARQUBE_HOME/bin/*
 
 VOLUME "$SONARQUBE_HOME/data"
 

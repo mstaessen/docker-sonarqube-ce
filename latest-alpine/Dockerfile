@@ -21,6 +21,7 @@ USER sonarqube
 # uid                  sonarsource_deployer (Sonarsource Deployer) <infra@sonarsource.com>
 # sub   2048R/06855C1D 2015-05-25
 RUN set -x \
+    && export GNUPGHOME="$(mktemp -d)" \
     && apk add --no-cache gnupg unzip \
     && apk add --no-cache libressl wget \
     && apk add --no-cache su-exec \
@@ -35,7 +36,7 @@ RUN set -x \
     && mv sonarqube-$SONAR_VERSION sonarqube \
     && chown -R sonarqube:sonarqube sonarqube \
     && rm sonarqube.zip* \
-    && rm -rf $SONARQUBE_HOME/bin/*
+    && rm -rf $GNUPGHOME $SONARQUBE_HOME/bin/*
 
 VOLUME "$SONARQUBE_HOME/data"
 
