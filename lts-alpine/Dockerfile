@@ -21,7 +21,7 @@ RUN addgroup -S sonarqube \
 RUN set -x \
     && apk add --no-cache gnupg unzip libressl curl bash \
     && gpg --keyserver keyserver.ubuntu.com --recv-keys F1182E81C792928921DBCAB4CFCA4A29D26468DE \
-    && mkdir /opt \
+    && mkdir -p /opt \
     && cd /opt \
     && wget -O sonarqube.zip --no-verbose https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-$SONAR_VERSION.zip \
     && wget -O sonarqube.zip.asc --no-verbose https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-$SONAR_VERSION.zip.asc \
