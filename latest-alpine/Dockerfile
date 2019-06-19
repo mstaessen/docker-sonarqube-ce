@@ -1,4 +1,4 @@
-FROM openjdk:8-alpine
+FROM openjdk:11-alpine
 
 ENV SONAR_VERSION=7.8 \
     SONARQUBE_HOME=/opt/sonarqube \
