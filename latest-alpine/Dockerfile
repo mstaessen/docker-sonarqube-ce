@@ -1,4 +1,4 @@
-FROM openjdk:8-alpine
+FROM alpine
 
 ENV SONAR_VERSION=7.9.1 \
     SONARQUBE_HOME=/opt/sonarqube \
@@ -19,7 +19,7 @@ RUN addgroup -S sonarqube \
 # uid                  sonarsource_deployer (Sonarsource Deployer) <infra@sonarsource.com>
 # sub   2048R/06855C1D 2015-05-25
 RUN set -x \
-    && apk add --no-cache gnupg unzip libressl curl bash \
+    && apk add --no-cache gnupg unzip libressl curl bash openjdk11 \
     && gpg --keyserver keyserver.ubuntu.com --recv-keys F1182E81C792928921DBCAB4CFCA4A29D26468DE \
     && mkdir -p /opt \
     && cd /opt \
