@@ -1,6 +1,6 @@
 FROM alpine
 
-ENV SONAR_VERSION=7.9.1 \
+ENV SONAR_VERSION=8.0 \
     SONARQUBE_HOME=/opt/sonarqube \
     # Database configuration
     # Defaults to using H2
